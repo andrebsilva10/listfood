@@ -12,23 +12,27 @@ O ListFood é um aplicativo desenvolvido com Expo e React Native, projetado para
 - **Interface Intuitiva:** Design limpo e fácil de usar, proporcionando uma experiência agradável ao usuário.
 - **Edição e Exclusão:** Edite ou exclua listas e produtos com facilidade.
 
-<!-- ## Prints das Telas
+## Prints das Telas
 
 ### Tela Inicial (Listas)
 
-<img src="" width="300">
+<img src="/assets/images/listas.png" width="300">
 
 ### Tela de Detalhes da Lista
 
-<img src="" width="300">
+<img src="/assets/images/detalhes-lista.png" width="300">
 
 ### Tela de Criação/Edição de Lista
 
-<img src="" width="300">
+<img src="/assets/images/criacao-lista.png" width="300">
 
 ### Tela de Criação/Edição de Produto
 
-<img src="" width="300"> -->
+<img src="/assets/images/criacao-produto.png" width="300">
+
+### Tela Sobre
+
+<img src="/assets/images/sobre.png" width="300">
 
 ## Como Executar o Projeto
 
