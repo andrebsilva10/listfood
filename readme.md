@@ -62,3 +62,22 @@ O ListFood é um aplicativo desenvolvido com Expo e React Native, projetado para
 - Este projeto foi desenvolvido utilizando Expo com TypeScript, seguindo as boas práticas de desenvolvimento mobile com React Native.
 - O Expo Router foi utilizado para criar uma navegação fluida e eficiente entre as telas do aplicativo.
 - A interface do usuário foi projetada para proporcionar uma experiência agradável e intuitiva.
+
+## Diferença entre Testes Unitários e Testes E2E
+
+- **Testes Unitários**: Validam partes isoladas do código, como componentes, funções ou hooks, sem dependências externas. Exemplo: testar se o componente `ProductItem` exibe corretamente o nome e subtotal do produto.
+- **Testes E2E (End-to-End)**: Simulam o uso real do app, cobrindo fluxos completos (ex: criar lista, adicionar produto, navegar entre telas). Eles garantem que todas as partes do sistema funcionam juntas como esperado.
+
+## Como rodar os testes
+
+### Testes E2E (Playwright)
+
+1. Rode o app em modo web:
+   ```bash
+   npx expo start --web
+   ```
+
+2. Em outro terminal, rode os testes E2E:
+   ```bash
+    npx playwright test
+    ```
