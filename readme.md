@@ -73,11 +73,19 @@ O ListFood é um aplicativo desenvolvido com Expo e React Native, projetado para
 ### Testes E2E (Playwright)
 
 1. Rode o app em modo web:
+
    ```bash
    npx expo start --web
    ```
 
 2. Em outro terminal, rode os testes E2E:
    ```bash
-    npx playwright test
-    ```
+    npm run test:e2e
+   ```
+
+### Testes Unitários (Jest)
+
+1. Rode os testes unitários:
+   ```bash
+   npm test
+   ```

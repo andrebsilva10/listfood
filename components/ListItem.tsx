@@ -31,8 +31,9 @@ export const ListItem = memo(
         <View style={styles.actions}>
           <TouchableOpacity
             style={styles.optionsButton}
+            accessibilityRole="button"
             onPress={(e) => {
-              e.stopPropagation();
+              e?.stopPropagation?.();
               onOptions();
             }}
             hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
