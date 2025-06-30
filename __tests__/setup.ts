@@ -45,3 +45,30 @@ jest.mock('lucide-react-native', () => ({
   LogOut: 'LogOut',
   CreditCard: 'CreditCard',
 }));
+
+// Mock AsyncStorageHelper
+jest.mock('@/helpers/AsyncStorageHelper', () => ({
+  __esModule: true,
+  default: {
+    getString: jest.fn(),
+    setString: jest.fn(),
+    removeItem: jest.fn(),
+    setNumber: jest.fn(),
+    getNumber: jest.fn(),
+    setBoolean: jest.fn(),
+    getBoolean: jest.fn(),
+    setObject: jest.fn(),
+    getObject: jest.fn(),
+  },
+}));
+
+// Global test utilities
+declare global {
+  var getByText: any;
+  var queryByText: any;
+  var getByTestId: any;
+  var getByPlaceholderText: any;
+  var getByDisplayValue: any;
+  var getByRole: any;
+  var fireEvent: any;
+}
