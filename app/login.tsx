@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Switch,
   Alert,
+  Image,
 } from 'react-native';
 import { router } from 'expo-router';
 import { useToken } from '@/hooks/useToken';
@@ -53,21 +54,27 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        <Text style={styles.title}>ListFood</Text>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('@/assets/images/icon.png')}
+            style={styles.logo}
+          />
+        </View>
         <Text style={styles.subtitle}>Faça login para continuar</Text>
 
         <TextInput
           style={styles.input}
           placeholder="Email"
+          placeholderTextColor="#999"
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
-          autoCapitalize="none"
         />
 
         <TextInput
           style={styles.input}
           placeholder="Senha"
+          placeholderTextColor="#999"
           value={password}
           onChangeText={setPassword}
           secureTextEntry
@@ -108,12 +115,14 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#00B7C6',
-    textAlign: 'center',
-    marginBottom: 8,
+  logoContainer: {
+    alignItems: 'center',
+  },
+  logo: {
+    width: 130,
+    height: 100,
+    borderRadius: 20,
+    resizeMode: 'contain',
   },
   subtitle: {
     fontSize: 16,
