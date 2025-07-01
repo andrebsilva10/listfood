@@ -64,6 +64,20 @@ export default function FormProductScreen() {
       setQuantityError('');
     }
 
+    // validações numéricas adicionais
+    if (isValid) {
+      const priceValue = parseFloat(unitPrice);
+      if (isNaN(priceValue) || priceValue <= 0) {
+        setUnitPriceError('Preço unitário deve ser maior que zero');
+        isValid = false;
+      }
+      const quantityValue = parseFloat(quantity);
+      if (isNaN(quantityValue) || !Number.isInteger(quantityValue) || quantityValue < 1) {
+        setQuantityError('Quantidade deve ser ao menos 1');
+        isValid = false;
+      }
+    }
+
     if (!isValid) return;
 
     const productData = {

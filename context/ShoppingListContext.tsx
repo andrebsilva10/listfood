@@ -38,6 +38,8 @@ export function ShoppingListProvider({ children }: { children: ReactNode }) {
   const [lists, setLists] = useState<ShoppingList[]>([]);
 
   const addList = (data: Omit<ShoppingList, 'id' | 'products'>) => {
+    if (!data.name || data.name.trim() === '') return;
+
     const newList: ShoppingList = {
       id: Date.now().toString(),
       name: data.name,

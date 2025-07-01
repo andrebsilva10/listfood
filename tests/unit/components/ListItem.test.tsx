@@ -3,11 +3,11 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { ListItem } from '@/components/ListItem';
 
 describe('ListItem', () => {
-  it('chama onPress ao ser pressionado', () => {
+  it('chama onPress ao pressionar o container do item via testID', () => {
     const onPressMock = jest.fn();
     const onOptionsMock = jest.fn();
 
-    const { getByText } = render(
+    const { getByText, getByTestId } = render(
       <ListItem
         title="Minha Lista"
         subtitle="5 itens"
@@ -16,15 +16,16 @@ describe('ListItem', () => {
       />
     );
 
-    fireEvent.press(getByText('Minha Lista'));
+    const container = getByTestId('listitem-container');
+    fireEvent.press(container);
     expect(onPressMock).toHaveBeenCalled();
   });
 
-  it('chama onOptions ao clicar no botão de opções', () => {
+  it('chama onOptions ao clicar no botão de opções via testID', () => {
     const onPressMock = jest.fn();
     const onOptionsMock = jest.fn();
 
-    const { getByRole } = render(
+    const { getByRole, getByTestId } = render(
       <ListItem
         title="Lista de Compras"
         subtitle="10 produtos"
@@ -33,7 +34,18 @@ describe('ListItem', () => {
       />
     );
 
-    fireEvent.press(getByRole('button'));
+    const optionsBtn = getByTestId('listitem-options-button');
+    fireEvent.press(optionsBtn);
     expect(onOptionsMock).toHaveBeenCalled();
+  });
+
+  it('não chama onPress ao clicar no botão de opções (stopPropagation)', () => {
+    const onPressMock = jest.fn();
+    const onOptionsMock = jest.fn();
+    const { getByTestId } = render(
+      <ListItem title="Teste" onPress={onPressMock} onOptions={onOptionsMock} />
+    );
+    fireEvent.press(getByTestId('listitem-options-button'));
+    expect(onPressMock).not.toHaveBeenCalled();
   });
 });

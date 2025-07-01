@@ -1,4 +1,10 @@
-import { StyleSheet, View, Text, TextInput, TextInputProps } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  TextInputProps,
+} from 'react-native';
 
 interface FormInputProps extends TextInputProps {
   label: string;
@@ -12,18 +18,21 @@ export function FormInput({ label, error, required, ...rest }: FormInputProps) {
       <Text style={styles.label}>
         {label} {required && <Text style={styles.required}>*</Text>}
       </Text>
-      
+
       <TextInput
-        style={[
-          styles.input,
-          error ? styles.inputError : null
-        ]}
+        testID={`forminput-${label.toLowerCase()}`}
+        style={[styles.input, error ? styles.inputError : null]}
         placeholderTextColor="#9E9E9E"
         {...rest}
       />
-      
+
       {error ? (
-        <Text style={styles.errorText}>{error}</Text>
+        <Text
+          style={styles.errorText}
+          testID={`forminput-error-${label.toLowerCase()}`}
+        >
+          {error}
+        </Text>
       ) : null}
     </View>
   );

@@ -13,6 +13,7 @@ export const ListItem = memo(
   ({ title, subtitle, onPress, onOptions }: ListItemProps) => {
     return (
       <TouchableOpacity
+        testID="listitem-container"
         style={styles.container}
         onPress={onPress}
         activeOpacity={0.7}
@@ -30,8 +31,8 @@ export const ListItem = memo(
 
         <View style={styles.actions}>
           <TouchableOpacity
+            testID="listitem-options-button"
             style={styles.optionsButton}
-            accessibilityRole="button"
             onPress={(e) => {
               e?.stopPropagation?.();
               onOptions();
