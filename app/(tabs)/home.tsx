@@ -10,12 +10,14 @@ import {
 import { router } from 'expo-router';
 import { ListItem } from '@/components/ListItem';
 import { useShoppingList } from '@/context/ShoppingListContext';
+import { useTheme } from '@/context/ThemeContext';
 import { EmptyState } from '@/components/EmptyState';
 import { ActionSheet } from '@/components/ActionSheet';
 import { Plus, CircleAlert as AlertCircle } from 'lucide-react-native';
 
 export default function HomeScreen() {
   const { lists, removeList } = useShoppingList();
+  const { theme } = useTheme();
   const [actionSheetVisible, setActionSheetVisible] = useState(false);
   const [selectedList, setSelectedList] = useState<any>(null);
 
@@ -60,10 +62,12 @@ export default function HomeScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[styles.container, { backgroundColor: theme.backgroundColor }]}
+    >
       {lists.length === 0 ? (
         <EmptyState
-          icon={<AlertCircle size={48} color="#757575" />}
+          icon={<AlertCircle size={48} color={theme.textSecondary} />}
           message="Nenhuma lista cadastrada"
           actionLabel="Nova Lista"
           onAction={handleCreateList}
@@ -84,7 +88,10 @@ export default function HomeScreen() {
         />
       )}
 
-      <TouchableOpacity style={styles.fabButton} onPress={handleCreateList}>
+      <TouchableOpacity
+        style={[styles.fabButton, { backgroundColor: theme.primary }]}
+        onPress={handleCreateList}
+      >
         <Plus size={24} color="#FFF" />
       </TouchableOpacity>
 
@@ -116,7 +123,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
   },
   listContent: {
     padding: 16,
@@ -128,7 +134,6 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#00B7C6',
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 4,

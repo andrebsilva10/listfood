@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { useTheme } from '@/context/ThemeContext';
 
 interface ProductItemProps {
   name: string;
@@ -11,6 +12,50 @@ interface ProductItemProps {
 
 export const ProductItem = memo(
   ({ name, unitPrice, quantity, subtotal, onPress }: ProductItemProps) => {
+    const { theme } = useTheme();
+
+    const styles = StyleSheet.create({
+      container: {
+        backgroundColor: theme.cardBackground,
+        borderRadius: 8,
+        padding: 16,
+        marginBottom: 8,
+        shadowColor: theme.shadowColor,
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: theme.shadowOpacity,
+        shadowRadius: 2,
+        elevation: 2,
+      },
+      name: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: theme.textPrimary,
+        marginBottom: 12,
+      },
+      details: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      },
+      detailItem: {
+        alignItems: 'flex-start',
+      },
+      detailLabel: {
+        fontSize: 12,
+        color: theme.textSecondary,
+        marginBottom: 4,
+      },
+      detailValue: {
+        fontSize: 14,
+        color: theme.textPrimary,
+        fontWeight: '500',
+      },
+      subtotalValue: {
+        fontSize: 14,
+        color: theme.primary,
+        fontWeight: '700',
+      },
+    });
+
     return (
       <TouchableOpacity
         style={styles.container}
@@ -41,45 +86,3 @@ export const ProductItem = memo(
     );
   }
 );
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 8,
-    padding: 16,
-    marginBottom: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  name: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#333333',
-    marginBottom: 12,
-  },
-  details: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  detailItem: {
-    alignItems: 'flex-start',
-  },
-  detailLabel: {
-    fontSize: 12,
-    color: '#757575',
-    marginBottom: 4,
-  },
-  detailValue: {
-    fontSize: 14,
-    color: '#333333',
-    fontWeight: '500',
-  },
-  subtotalValue: {
-    fontSize: 14,
-    color: '#00B7C6',
-    fontWeight: '700',
-  },
-});

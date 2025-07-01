@@ -1,21 +1,34 @@
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function AboutScreen() {
+  const { theme } = useTheme();
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={[styles.container, { backgroundColor: theme.backgroundColor }]}
+    >
       <View style={styles.content}>
         <View style={styles.logoContainer}>
-          <View style={styles.logo}>
+          <View style={[styles.logo, { backgroundColor: theme.primary }]}>
             <Text style={styles.logoText}>LF</Text>
           </View>
-          <Text style={styles.appName}>ListFood</Text>
+          <Text style={[styles.appName, { color: theme.primary }]}>
+            ListFood
+          </Text>
         </View>
 
-        <Text style={styles.version}>Versão 1.0.0</Text>
+        <Text style={[styles.version, { color: theme.textSecondary }]}>
+          Versão 1.0.0
+        </Text>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Sobre o Aplicativo</Text>
-          <Text style={styles.sectionText}>
+        <View
+          style={[styles.section, { backgroundColor: theme.cardBackground }]}
+        >
+          <Text style={[styles.sectionTitle, { color: theme.primary }]}>
+            Sobre o Aplicativo
+          </Text>
+          <Text style={[styles.sectionText, { color: theme.textPrimary }]}>
             O ListFood é um aplicativo de lista de compras para supermercado que
             ajuda você a organizar suas compras e controlar seus gastos. Crie
             listas de compras, adicione produtos, e acompanhe seu saldo em tempo
@@ -23,9 +36,13 @@ export default function AboutScreen() {
           </Text>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Como Usar</Text>
-          <Text style={styles.sectionText}>
+        <View
+          style={[styles.section, { backgroundColor: theme.cardBackground }]}
+        >
+          <Text style={[styles.sectionTitle, { color: theme.primary }]}>
+            Como Usar
+          </Text>
+          <Text style={[styles.sectionText, { color: theme.textPrimary }]}>
             1. Crie uma nova lista de compras{'\n'}
             2. Adicione produtos à sua lista{'\n'}
             3. Defina preços e quantidades{'\n'}
@@ -33,15 +50,19 @@ export default function AboutScreen() {
           </Text>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Contato</Text>
-          <Text style={styles.sectionText}>
+        <View
+          style={[styles.section, { backgroundColor: theme.cardBackground }]}
+        >
+          <Text style={[styles.sectionTitle, { color: theme.primary }]}>
+            Contato
+          </Text>
+          <Text style={[styles.sectionText, { color: theme.textPrimary }]}>
             Dúvidas, sugestões ou problemas?{'\n'}
             Entre em contato: listfood@exemplo.com
           </Text>
         </View>
 
-        <Text style={styles.footer}>
+        <Text style={[styles.footer, { color: theme.textSecondary }]}>
           © 2025 ListFood. Todos os direitos reservados.
         </Text>
       </View>
@@ -52,7 +73,6 @@ export default function AboutScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
   },
   content: {
     padding: 24,
@@ -66,7 +86,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#00B7C6',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 8,
@@ -79,17 +98,14 @@ const styles = StyleSheet.create({
   appName: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#00B7C6',
   },
   version: {
     fontSize: 16,
-    color: '#757575',
     marginBottom: 32,
   },
   section: {
     width: '100%',
     marginBottom: 24,
-    backgroundColor: 'white',
     borderRadius: 8,
     padding: 16,
     shadowColor: '#000',
@@ -102,16 +118,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
-    color: '#00B7C6',
   },
   sectionText: {
     fontSize: 16,
-    color: '#333',
     lineHeight: 24,
   },
   footer: {
     marginTop: 16,
     fontSize: 14,
-    color: '#757575',
   },
 });

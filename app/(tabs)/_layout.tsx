@@ -1,21 +1,28 @@
 import { Tabs } from 'expo-router';
 import { Home, ShoppingCart } from 'lucide-react-native';
+import { useTheme } from '@/context/ThemeContext';
+import { ThemeToggleButton } from '@/components/ThemeToggleButton';
 
 export default function TabsLayout() {
+  const { theme } = useTheme();
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#00B7C6',
-        tabBarInactiveTintColor: '#757575',
+        tabBarActiveTintColor: theme.tabBarActive,
+        tabBarInactiveTintColor: theme.tabBarInactive,
         tabBarStyle: {
           height: 60,
           paddingBottom: 8,
           paddingTop: 8,
+          backgroundColor: theme.tabBarBackground,
+          borderTopColor: theme.borderColor,
         },
         headerStyle: {
-          backgroundColor: '#00B7C6',
+          backgroundColor: theme.headerBackground,
         },
-        headerTintColor: '#fff',
+        headerTintColor: theme.headerText,
+        headerRight: () => <ThemeToggleButton />,
       }}
     >
       <Tabs.Screen

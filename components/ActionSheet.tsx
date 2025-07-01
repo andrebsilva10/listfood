@@ -12,6 +12,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { useTheme } from '@/context/ThemeContext';
 
 interface ActionOption {
   label: string;
@@ -26,6 +27,7 @@ interface ActionSheetProps {
 }
 
 export function ActionSheet({ visible, onClose, options }: ActionSheetProps) {
+  const { theme } = useTheme();
   const [modalVisible, setModalVisible] = useState(visible);
   const translateY = useSharedValue(300);
   const opacity = useSharedValue(0);
@@ -71,15 +73,26 @@ export function ActionSheet({ visible, onClose, options }: ActionSheetProps) {
           <Animated.View style={[styles.backdrop, backdropStyle]} />
         </TouchableWithoutFeedback>
 
-        <Animated.View style={[styles.sheet, animatedStyle]}>
-          <View style={styles.handle} />
+        <Animated.View
+          style={[
+            styles.sheet,
+            animatedStyle,
+            { backgroundColor: theme.surfaceColor },
+          ]}
+        >
+          <View
+            style={[styles.handle, { backgroundColor: theme.borderColor }]}
+          />
 
-          <View style={styles.options}>
+          <View
+            style={[styles.options, { backgroundColor: theme.cardBackground }]}
+          >
             {options.map((option, index) => (
               <TouchableOpacity
                 key={index}
                 style={[
                   styles.option,
+                  { borderBottomColor: theme.borderColor },
                   index === options.length - 1 ? styles.lastOption : null,
                 ]}
                 onPress={option.onPress}
@@ -87,7 +100,8 @@ export function ActionSheet({ visible, onClose, options }: ActionSheetProps) {
                 <Text
                   style={[
                     styles.optionText,
-                    option.destructive ? styles.destructiveText : null,
+                    { color: theme.textPrimary },
+                    option.destructive ? { color: theme.errorColor } : null,
                   ]}
                 >
                   {option.label}
@@ -96,8 +110,16 @@ export function ActionSheet({ visible, onClose, options }: ActionSheetProps) {
             ))}
           </View>
 
-          <TouchableOpacity style={styles.cancelButton} onPress={onClose}>
-            <Text style={styles.cancelText}>Cancelar</Text>
+          <TouchableOpacity
+            style={[
+              styles.cancelButton,
+              { backgroundColor: theme.cardBackground },
+            ]}
+            onPress={onClose}
+          >
+            <Text style={[styles.cancelText, { color: theme.primary }]}>
+              Cancelar
+            </Text>
           </TouchableOpacity>
         </Animated.View>
       </View>
@@ -115,7 +137,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   sheet: {
-    backgroundColor: '#F5F5F5',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
     paddingTop: 12,
@@ -126,12 +147,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: 40,
     height: 4,
-    backgroundColor: '#BDBDBD',
     borderRadius: 2,
     marginBottom: 16,
   },
   options: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginBottom: 16,
     overflow: 'hidden',
@@ -140,28 +159,21 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#EEEEEE',
   },
   lastOption: {
     borderBottomWidth: 0,
   },
   optionText: {
     fontSize: 16,
-    color: '#333333',
     textAlign: 'center',
   },
-  destructiveText: {
-    color: '#D32F2F',
-  },
   cancelButton: {
-    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     paddingVertical: 16,
   },
   cancelText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#00B7C6',
     textAlign: 'center',
   },
 });

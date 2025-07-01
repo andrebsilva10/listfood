@@ -11,9 +11,11 @@ import {
 } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useShoppingList } from '@/context/ShoppingListContext';
+import { useTheme } from '@/context/ThemeContext';
 import { FormInput } from '@/components/FormInput';
 
 export default function FormListScreen() {
+  const { theme } = useTheme();
   const [name, setName] = useState('');
   const [initialBalance, setInitialBalance] = useState('');
   const [nameError, setNameError] = useState('');
@@ -34,7 +36,6 @@ export default function FormListScreen() {
   }, [listId, lists]);
 
   const handleSave = () => {
-
     let isValid = true;
 
     if (!name.trim()) {
@@ -69,7 +70,7 @@ export default function FormListScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
+      style={[styles.container, { backgroundColor: theme.backgroundColor }]}
     >
       <View style={styles.form}>
         <FormInput
@@ -95,14 +96,29 @@ export default function FormListScreen() {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            style={[styles.button, styles.cancelButton]}
+            style={[
+              styles.button,
+              styles.cancelButton,
+              {
+                backgroundColor: theme.cardBackground,
+                borderColor: theme.borderColor,
+              },
+            ]}
             onPress={handleCancel}
           >
-            <Text style={styles.cancelButtonText}>Cancelar</Text>
+            <Text
+              style={[styles.cancelButtonText, { color: theme.textSecondary }]}
+            >
+              Cancelar
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.button, styles.saveButton]}
+            style={[
+              styles.button,
+              styles.saveButton,
+              { backgroundColor: theme.primary },
+            ]}
             onPress={handleSave}
           >
             <Text style={styles.saveButtonText}>Salvar</Text>
@@ -116,7 +132,6 @@ export default function FormListScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
   },
   form: {
     padding: 16,
@@ -133,15 +148,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButton: {
-    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#CCCCCC',
   },
-  saveButton: {
-    backgroundColor: '#00B7C6',
-  },
+  saveButton: {},
   cancelButtonText: {
-    color: '#757575',
     fontWeight: '600',
   },
   saveButtonText: {

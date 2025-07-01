@@ -9,12 +9,14 @@ import {
 } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useShoppingList } from '@/context/ShoppingListContext';
+import { useTheme } from '@/context/ThemeContext';
 import { ProductItem } from '@/components/ProductItem';
 import { EmptyState } from '@/components/EmptyState';
 import { ActionSheet } from '@/components/ActionSheet';
 import { Plus, ShoppingCart, CreditCard as Edit } from 'lucide-react-native';
 
 export default function DetailScreen() {
+  const { theme } = useTheme();
   const params = useLocalSearchParams();
   const listId = params.id as string;
 
@@ -86,35 +88,50 @@ export default function DetailScreen() {
 
   if (!list) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.errorText}>Lista não encontrada</Text>
+      <View
+        style={[styles.container, { backgroundColor: theme.backgroundColor }]}
+      >
+        <Text style={[styles.errorText, { color: theme.errorColor }]}>
+          Lista não encontrada
+        </Text>
       </View>
     );
   }
 
   const remainingBalance = calculateRemainingBalance();
-  const balanceColor = remainingBalance >= 0 ? '#00B7C6' : '#D32F2F';
+  const balanceColor =
+    remainingBalance >= 0 ? theme.successColor : theme.errorColor;
 
   return (
-    <View style={styles.container}>
-      {/* Header with balance */}
-      <View style={styles.balanceContainer}>
+    <View
+      style={[styles.container, { backgroundColor: theme.backgroundColor }]}
+    >
+      <View
+        style={[
+          styles.balanceContainer,
+          { backgroundColor: theme.cardBackground },
+        ]}
+      >
         <View style={styles.balanceInfo}>
-          <Text style={styles.balanceLabel}>Saldo Inicial</Text>
-          <Text style={styles.balanceValue}>
+          <Text style={[styles.balanceLabel, { color: theme.textSecondary }]}>
+            Saldo Inicial
+          </Text>
+          <Text style={[styles.balanceValue, { color: theme.primary }]}>
             R$ {list.initialBalance.toFixed(2)}
           </Text>
         </View>
 
         <View style={styles.balanceInfo}>
-          <Text style={styles.balanceLabel}>Saldo Restante</Text>
+          <Text style={[styles.balanceLabel, { color: theme.textSecondary }]}>
+            Saldo Restante
+          </Text>
           <Text style={[styles.balanceValue, { color: balanceColor }]}>
             R$ {remainingBalance.toFixed(2)}
           </Text>
         </View>
 
         <TouchableOpacity
-          style={styles.editListButton}
+          style={[styles.editListButton, { backgroundColor: theme.primary }]}
           onPress={handleEditList}
         >
           <Edit size={16} color="#FFFFFF" />
@@ -122,13 +139,14 @@ export default function DetailScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Products list */}
       <View style={styles.productsContainer}>
-        <Text style={styles.sectionTitle}>Produtos</Text>
+        <Text style={[styles.sectionTitle, { color: theme.textPrimary }]}>
+          Produtos
+        </Text>
 
         {list.products.length === 0 ? (
           <EmptyState
-            icon={<ShoppingCart size={48} color="#757575" />}
+            icon={<ShoppingCart size={48} color={theme.textSecondary} />}
             message="Nenhum produto cadastrado"
             actionLabel="Adicionar Produto"
             onAction={handleAddProduct}
@@ -151,12 +169,13 @@ export default function DetailScreen() {
         )}
       </View>
 
-      {/* Add product button */}
-      <TouchableOpacity style={styles.fabButton} onPress={handleAddProduct}>
+      <TouchableOpacity
+        style={[styles.fabButton, { backgroundColor: theme.primary }]}
+        onPress={handleAddProduct}
+      >
         <Plus size={24} color="#FFF" />
       </TouchableOpacity>
 
-      {/* Action sheet for product options */}
       <ActionSheet
         visible={actionSheetVisible}
         onClose={() => setActionSheetVisible(false)}
@@ -185,16 +204,13 @@ export default function DetailScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
   },
   errorText: {
     fontSize: 16,
-    color: '#D32F2F',
     textAlign: 'center',
     marginTop: 32,
   },
   balanceContainer: {
-    backgroundColor: '#FFFFFF',
     padding: 16,
     marginBottom: 8,
     elevation: 2,
@@ -210,18 +226,15 @@ const styles = StyleSheet.create({
   },
   balanceLabel: {
     fontSize: 16,
-    color: '#757575',
   },
   balanceValue: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#00B7C6',
   },
   editListButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#00B7C6',
     padding: 8,
     borderRadius: 4,
     marginTop: 8,
@@ -239,7 +252,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: '#333333',
   },
   listContent: {
     flexGrow: 1,
@@ -251,7 +263,6 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#00B7C6',
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 4,

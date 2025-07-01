@@ -10,9 +10,11 @@ import {
 } from 'react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useShoppingList } from '@/context/ShoppingListContext';
+import { useTheme } from '@/context/ThemeContext';
 import { FormInput } from '@/components/FormInput';
 
 export default function FormProductScreen() {
+  const { theme } = useTheme();
   const [name, setName] = useState('');
   const [unitPrice, setUnitPrice] = useState('');
   const [quantity, setQuantity] = useState('');
@@ -40,7 +42,6 @@ export default function FormProductScreen() {
   }, [listId, productId, getProductById]);
 
   const handleSave = () => {
-
     let isValid = true;
 
     if (!name.trim()) {
@@ -64,7 +65,6 @@ export default function FormProductScreen() {
       setQuantityError('');
     }
 
-    // validações numéricas adicionais
     if (isValid) {
       const priceValue = parseFloat(unitPrice);
       if (isNaN(priceValue) || priceValue <= 0) {
@@ -72,7 +72,11 @@ export default function FormProductScreen() {
         isValid = false;
       }
       const quantityValue = parseFloat(quantity);
-      if (isNaN(quantityValue) || !Number.isInteger(quantityValue) || quantityValue < 1) {
+      if (
+        isNaN(quantityValue) ||
+        !Number.isInteger(quantityValue) ||
+        quantityValue < 1
+      ) {
         setQuantityError('Quantidade deve ser ao menos 1');
         isValid = false;
       }
@@ -107,7 +111,7 @@ export default function FormProductScreen() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}
+      style={[styles.container, { backgroundColor: theme.backgroundColor }]}
     >
       <View style={styles.form}>
         <FormInput
@@ -147,9 +151,16 @@ export default function FormProductScreen() {
           required
         />
 
-        <View style={styles.subtotalContainer}>
-          <Text style={styles.subtotalLabel}>Subtotal:</Text>
-          <Text style={styles.subtotalValue}>
+        <View
+          style={[
+            styles.subtotalContainer,
+            { backgroundColor: theme.surfaceColor },
+          ]}
+        >
+          <Text style={[styles.subtotalLabel, { color: theme.primary }]}>
+            Subtotal:
+          </Text>
+          <Text style={[styles.subtotalValue, { color: theme.primary }]}>
             R${' '}
             {(
               parseFloat(unitPrice || '0') * parseFloat(quantity || '0')
@@ -159,14 +170,29 @@ export default function FormProductScreen() {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            style={[styles.button, styles.cancelButton]}
+            style={[
+              styles.button,
+              styles.cancelButton,
+              {
+                backgroundColor: theme.cardBackground,
+                borderColor: theme.borderColor,
+              },
+            ]}
             onPress={handleCancel}
           >
-            <Text style={styles.cancelButtonText}>Cancelar</Text>
+            <Text
+              style={[styles.cancelButtonText, { color: theme.textSecondary }]}
+            >
+              Cancelar
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.button, styles.saveButton]}
+            style={[
+              styles.button,
+              styles.saveButton,
+              { backgroundColor: theme.primary },
+            ]}
             onPress={handleSave}
           >
             <Text style={styles.saveButtonText}>Salvar</Text>
@@ -180,7 +206,6 @@ export default function FormProductScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
   },
   form: {
     padding: 16,
@@ -188,7 +213,6 @@ const styles = StyleSheet.create({
   subtotalContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#E8F5E9',
     padding: 16,
     borderRadius: 8,
     marginTop: 16,
@@ -196,12 +220,10 @@ const styles = StyleSheet.create({
   subtotalLabel: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#00B7C6',
   },
   subtotalValue: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#00B7C6',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -215,15 +237,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButton: {
-    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#CCCCCC',
   },
-  saveButton: {
-    backgroundColor: '#00B7C6',
-  },
+  saveButton: {},
   cancelButtonText: {
-    color: '#757575',
     fontWeight: '600',
   },
   saveButtonText: {

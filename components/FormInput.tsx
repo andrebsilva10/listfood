@@ -5,6 +5,7 @@ import {
   TextInput,
   TextInputProps,
 } from 'react-native';
+import { useTheme } from '@/context/ThemeContext';
 
 interface FormInputProps extends TextInputProps {
   label: string;
@@ -13,6 +14,39 @@ interface FormInputProps extends TextInputProps {
 }
 
 export function FormInput({ label, error, required, ...rest }: FormInputProps) {
+  const { theme } = useTheme();
+
+  const styles = StyleSheet.create({
+    container: {
+      marginBottom: 16,
+    },
+    label: {
+      fontSize: 16,
+      marginBottom: 8,
+      color: theme.textPrimary,
+    },
+    required: {
+      color: theme.errorColor,
+    },
+    input: {
+      backgroundColor: theme.inputBackground,
+      borderWidth: 1,
+      borderColor: theme.borderColor,
+      borderRadius: 8,
+      padding: 12,
+      fontSize: 16,
+      color: theme.textPrimary,
+    },
+    inputError: {
+      borderColor: theme.errorColor,
+    },
+    errorText: {
+      color: theme.errorColor,
+      fontSize: 14,
+      marginTop: 4,
+    },
+  });
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>
@@ -22,7 +56,7 @@ export function FormInput({ label, error, required, ...rest }: FormInputProps) {
       <TextInput
         testID={`forminput-${label.toLowerCase()}`}
         style={[styles.input, error ? styles.inputError : null]}
-        placeholderTextColor="#9E9E9E"
+        placeholderTextColor={theme.placeholderText}
         {...rest}
       />
 
@@ -37,34 +71,3 @@ export function FormInput({ label, error, required, ...rest }: FormInputProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 16,
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 8,
-    color: '#424242',
-  },
-  required: {
-    color: '#D32F2F',
-  },
-  input: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-    borderRadius: 8,
-    padding: 12,
-    fontSize: 16,
-    color: '#212121',
-  },
-  inputError: {
-    borderColor: '#D32F2F',
-  },
-  errorText: {
-    color: '#D32F2F',
-    fontSize: 14,
-    marginTop: 4,
-  },
-});
