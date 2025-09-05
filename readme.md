@@ -6,11 +6,11 @@ O ListFood é um aplicativo desenvolvido com Expo e React Native, projetado para
 
 ## Funcionalidades Principais
 
-[x] **Criação de Listas:** Crie listas de compras personalizadas com nomes e orçamentos definidos.
-[x] **Gerenciamento de Produtos:** Adicione produtos às suas listas, especificando nome, preço unitário e quantidade.
-[x] **Cálculo Automático:** O aplicativo calcula automaticamente o subtotal de cada produto e o saldo restante na lista.
-[x] **Interface Intuitiva:** Design limpo e fácil de usar, proporcionando uma experiência agradável ao usuário.
-[x] **Edição e Exclusão:** Edite ou exclua listas e produtos com facilidade.
+- [x] **Criação de Listas:** Crie listas de compras personalizadas com nomes e orçamentos definidos.
+- [x] **Gerenciamento de Produtos:** Adicione produtos às suas listas, especificando nome, preço unitário e quantidade.
+- [x] **Cálculo Automático:** O aplicativo calcula automaticamente o subtotal de cada produto e o saldo restante na lista.
+- [x] **Interface Intuitiva:** Design limpo e fácil de usar, proporcionando uma experiência agradável ao usuário.
+- [x] **Edição e Exclusão:** Edite ou exclua listas e produtos com facilidade.
 
 ## Prints das Telas
 
