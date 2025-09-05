@@ -34,6 +34,12 @@ O ListFood é um aplicativo desenvolvido com Expo e React Native, projetado para
 
 <img src="/assets/images/sobre.png" width="300">
 
+## Modelagem do Banco de Dados
+
+A modelagem do banco foi realizada no **dbdiagram.io** e pode ser acessada pelo link abaixo:
+
+- [Visualizar Modelagem do Banco de Dados](https://dbdiagram.io/d/6631b3de5b24a634d038ad7f)
+
 ## Como Executar o Projeto
 
 1.  **Clone o repositório:**
