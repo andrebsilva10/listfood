@@ -40,6 +40,16 @@ A modelagem do banco foi realizada no **dbdiagram.io** e pode ser acessada pelo 
 
 - [Visualizar Modelagem do Banco de Dados](https://dbdiagram.io/d/6631b3de5b24a634d038ad7f)
 
+## Planejamento de Sprints
+
+| Sprint | Período | Atividades |
+|--------|---------|------------|
+| Sprint 1 | Concluído | Criação do repositório, setup do projeto com Expo, implementação do CRUD de listas e produtos, cálculos automáticos e interface inicial. |
+| Sprint 2 | Semana 1-2 | Integração com banco de dados para persistência das listas e produtos. |
+| Sprint 3 | Semana 3-4 | Implementação do sistema de autenticação de usuários (cadastro, login e logout). |
+| Sprint 4 | Semana 5-6 | Associação das listas a cada usuário autenticado, permitindo que cada usuário tenha suas próprias listas. |
+| Sprint 5 | Semana 7-8 | Ajustes finais na interface, testes, correção de bugs e entrega da versão final. |
+
 ## Como Executar o Projeto
 
 1.  **Clone o repositório:**
