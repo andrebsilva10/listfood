@@ -1,10 +1,9 @@
-import { Stack } from 'expo-router';
+import { Stack, useRouter, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { View, ActivityIndicator } from 'react-native';
 import { ShoppingListProvider } from '@/context/ShoppingListContext';
 import { useToken } from '@/hooks/useToken';
 import { useEffect } from 'react';
-import { useRouter, usePathname } from 'expo-router';
 
 export default function RootLayout() {
   const { token, isLoading } = useToken();

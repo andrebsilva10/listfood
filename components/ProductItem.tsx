@@ -42,6 +42,8 @@ export const ProductItem = memo(
   }
 );
 
+ProductItem.displayName = 'ProductItem';
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',
