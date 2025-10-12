@@ -47,6 +47,8 @@ export const ListItem = memo(
   }
 );
 
+ListItem.displayName = 'ListItem';
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFFFFF',

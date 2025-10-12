@@ -45,10 +45,41 @@ A modelagem do banco foi realizada no **dbdiagram.io** e pode ser acessada pelo 
 | Sprint | Período | Atividades |
 |--------|---------|------------|
 | Sprint 1 | Concluído | Criação do repositório, setup do projeto com Expo, implementação do CRUD de listas e produtos, cálculos automáticos e interface inicial. |
-| Sprint 2 | Semana 1-2 | Integração com banco de dados para persistência das listas e produtos. |
-| Sprint 3 | Semana 3-4 | Implementação do sistema de autenticação de usuários (cadastro, login e logout). |
-| Sprint 4 | Semana 5-6 | Associação das listas a cada usuário autenticado, permitindo que cada usuário tenha suas próprias listas. |
-| Sprint 5 | Semana 7-8 | Ajustes finais na interface, testes, correção de bugs e entrega da versão final. |
+| Sprint 2 | Em andamento | Integração com banco de dados para persistência das listas e produtos. |
+| Sprint 3 | Concluído | Implementação do sistema de autenticação de usuários (cadastro, login e logout). |
+| Sprint 4 | Em andamento | Associação das listas a cada usuário autenticado, permitindo que cada usuário tenha suas próprias listas. |
+| Sprint 5 | Pendente | Ajustes finais na interface, testes, correção de bugs e entrega da versão final. |
+
+## Atualizações desde o último checkpoint
+
+### Recursos dos módulos anteriores aplicados:
+
+- **Expo Router**: Configurado para navegação entre telas com Stack Navigator e Tab Navigator
+- **Zustand**: Utilizado para gerenciamento de estado global através do hook `useToken` para autenticação
+- **AsyncStorage**: Implementado para persistência de dados locais (token de autenticação e lembrança de email)
+- **React Native Reanimated**: Aplicado no componente `ActionSheet` para animações suaves
+- **Lucide React Native**: Utilizado para ícones consistentes em toda a aplicação
+- **TypeScript**: Implementado com tipagem completa para melhor desenvolvimento e manutenção
+
+### Conceitos de boas práticas para componentes reutilizáveis aplicados:
+
+1. **Componentização**: Criados componentes reutilizáveis como `ListItem`, `ProductItem`, `EmptyState`, `ActionSheet` e `FormInput`
+
+2. **Props Interface**: Todos os componentes possuem interfaces TypeScript bem definidas para suas props
+
+3. **Memoização**: Utilizado `memo` nos componentes `ListItem` e `ProductItem` para otimização de performance
+
+4. **Composição**: O componente `EmptyState` utiliza composição através de `ReactNode` para receber ícones customizados
+
+5. **Separação de responsabilidades**: Cada componente tem uma responsabilidade específica e bem definida
+
+6. **Estilização consistente**: Padrão de cores e espaçamentos definidos e aplicados consistentemente
+
+7. **Acessibilidade**: Implementados `hitSlop` e `activeOpacity` para melhor experiência do usuário
+
+### Vídeo Demonstrativo
+
+[Link para o vídeo demonstrativo](https://youtube.com/watch?v=exemplo) - *A ser adicionado após gravação*
 
 ## Como Executar o Projeto
 
