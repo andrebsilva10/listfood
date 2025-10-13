@@ -77,10 +77,6 @@ A modelagem do banco foi realizada no **dbdiagram.io** e pode ser acessada pelo 
 
 7. **Acessibilidade**: Implementados `hitSlop` e `activeOpacity` para melhor experiência do usuário
 
-### Vídeo Demonstrativo
-
-[Link para o vídeo demonstrativo](https://youtube.com/watch?v=exemplo) - *A ser adicionado após gravação*
-
 ## Como Executar o Projeto
 
 1.  **Clone o repositório:**
