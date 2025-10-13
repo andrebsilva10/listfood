@@ -43,4 +43,17 @@ export const mockShoppingLists = [
       },
     ],
   },
+  {
+    id: '3',
+    name: 'Compras de Natal',
+    initialBalance: 100.00,
+    products: [
+      {
+        id: '6',
+        name: 'Panetone',
+        unitPrice: 10.00,
+        quantity: 1,
+      },
+    ],
+  },
 ];
