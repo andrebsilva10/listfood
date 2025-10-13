@@ -1,6 +1,6 @@
 import { ShoppingList } from '@/context/ShoppingListContext';
 
-export const mockShoppingLists: ShoppingLis[] = [
+export const mockShoppingLists: ShoppingList[] = [
   {
     id: '1',
     name: 'Compras do Supermercado',
